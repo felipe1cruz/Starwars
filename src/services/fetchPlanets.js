@@ -1,4 +1,4 @@
-const URL = 'https://swapi-trybe.herokuapp.com/api/planets/';
+const URL = 'https://swapi.py4e.com/api/planets';
 
 const fetchPlanets = async () => {
   const data = await fetch(URL);
