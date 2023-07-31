@@ -24,7 +24,7 @@ Tecnologias aplicadas por mim nesse projeto:
 
 ## Como rodar o projeto:
 - Clone o repositório;
-- Instale todas as dependências com o comanod `npm install`;
+- Instale todas as dependências com o comando `npm install`;
 - Rode a aplicação com o comando`npm start`; 
 
 ## Link do projeto:
