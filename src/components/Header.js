@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 import { PlanetsContext } from '../context/planetsContext';
+import HeaderTitle from '../style/HeaderTitle';
 
 function Header() {
   const { context } = useContext(PlanetsContext);
@@ -11,7 +11,10 @@ function Header() {
   }, []);
 
   return (
-    <Typography maxWidth variant="h2">StarWars planets</Typography>
+    <div>
+      <HeaderTitle larger>StarWars</HeaderTitle>
+      <HeaderTitle>Planets Search</HeaderTitle>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
-import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useContext, useState, useEffect } from 'react';
 import { PlanetsContext } from '../context/planetsContext';
+import FormControlStyle from '../style/FormControlStyle';
 
 function NumberFilter() {
   const { context } = useContext(PlanetsContext);
@@ -55,59 +55,65 @@ function NumberFilter() {
     setColumnList([...columnList, item.column]);
     const newList = savedFilter.filter((list) => item !== list);
     setSavedFilter(newList);
-    // if (newList.length === 0) {
-    //   setFiltrado(false);
-    // }
   };
   return (
-    <FormControl variant="standard" maxWidth="sm">
-      <InputLabel id="column-filter">Coluna</InputLabel>
-      <Select
-        data-testid="column-filter"
-        labelId="column-filter"
-        onChange={ (e) => setColumnFilter(e.target.value) }
-        name="column"
-        value={ columnFilter }
-        label="Coluna"
-      >
-        {columnList.map((item, i) => (
-          <MenuItem
-            key={ i }
-            value={ item }
+    <FormControlStyle variant="standard" maxWidth="sm">
+      <div>
+        <label htmlFor="column-filter">
+          Coluna:
+          <select
+            data-testid="column-filter"
+            labelId="column-filter"
+            onChange={ (e) => setColumnFilter(e.target.value) }
+            name="column"
+            value={ columnFilter }
+            label="Coluna"
+            id="column-filter"
           >
-            {item}
-          </MenuItem>))}
-      </Select>
+            {columnList.map((item, i) => (
+              <option
+                key={ i }
+                value={ item }
+              >
+                {item}
+              </option>))}
+          </select>
+        </label>
 
-      <Select
-        data-testid="comparison-filter"
-        labelId="comparison-filter"
-        onChange={ (e) => setComparisonFilter(e.target.value) }
-        name="comparison"
-        value={ comparisonFilter }
-        label="Operador"
-      >
-        <MenuItem value="maior que">maior que</MenuItem>
-        <MenuItem value="menor que">menor que</MenuItem>
-        <MenuItem value="igual a">igual a</MenuItem>
-      </Select>
+        <label htmlFor="comparison-filter">
+          Comparação:
+          <select
+            data-testid="comparison-filter"
+            labelId="comparison-filter"
+            onChange={ (e) => setComparisonFilter(e.target.value) }
+            name="comparison"
+            value={ comparisonFilter }
+            label="Operador"
+            id="comparison-filter"
+          >
+            <option value="maior que">maior que</option>
+            <option value="menor que">menor que</option>
+            <option value="igual a">igual a</option>
+          </select>
+        </label>
 
-      <InputLabel
-        type="number"
-        data-testid="value-filter"
-        name="value"
-        onChange={ (e) => setValueFilter(e.target.value) }
-        value={ valueFilter }
-      />
-      <Button
-        variant="contained"
-        type="button"
-        data-testid="button-filter"
-        onClick={ () => handleClick() }
-      >
-        Filtrar
+        <input
+          type="number"
+          data-testid="value-filter"
+          name="value"
+          onChange={ (e) => setValueFilter(e.target.value) }
+          value={ valueFilter }
+        />
+        <button
+          variant="contained"
+          type="button"
+          data-testid="button-filter"
+          onClick={ () => handleClick() }
+        >
+          Filtrar
 
-      </Button>
+        </button>
+      </div>
       {savedFilter.map((item, i) => (
         <div key={ i } data-testid="filter">
           <span>{item.column}</span>
@@ -118,15 +124,15 @@ function NumberFilter() {
       ))}
       { savedFilter.length > 0
        && (
-         <Button
+         <button
            variant="contained"
            type="button"
            data-testid="button-remove-filters"
            onClick={ () => setSavedFilter([]) }
          >
            Limpar
-         </Button>)}
-    </FormControl>
+         </button>)}
+    </FormControlStyle>
   );
 }
 

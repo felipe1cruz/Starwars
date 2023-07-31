@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { PlanetsContext } from '../context/planetsContext';
 import { tableHead } from '../data/data';
+import TableStyle from '../style/TableStyle';
 
 function Table() {
   const { context } = useContext(PlanetsContext);
@@ -13,7 +14,7 @@ function Table() {
   }, [data]);
 
   return (
-    <table>
+    <TableStyle>
       <thead>
         <tr>
           {tableHead.map((item) => <th key={ item }>{item}</th>)}
@@ -59,7 +60,7 @@ function Table() {
           </tr>
         )) }
       </tbody>
-    </table>
+    </TableStyle>
   );
 }
 

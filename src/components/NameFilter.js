@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material';
 import React, { useContext } from 'react';
+import NameFilterStyle from '../style/NameFilterStyle';
 import { PlanetsContext } from '../context/planetsContext';
 
 function NameFilter() {
@@ -7,7 +7,7 @@ function NameFilter() {
   const { nameFilter, setNameFilter } = context;
 
   return (
-    <TextField
+    <NameFilterStyle
       fullWidth
       type="text"
       onChange={ ({ target }) => setNameFilter({ ...nameFilter,
@@ -15,7 +15,7 @@ function NameFilter() {
       data-testid="name-filter"
       name="filterInput"
       value={ nameFilter.nameInput }
-      label="Digite o nome do planeta"
+      placeholder="Digite o nome do planeta"
       variant="standard"
     />
   );

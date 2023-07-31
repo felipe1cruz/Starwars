@@ -1,9 +1,6 @@
-import { Button,
-  FormControl,
-  FormControlLabel, FormLabel, MenuItem, Radio, RadioGroup, Select }
-from '@mui/material';
 import React, { useContext, useState, useEffect } from 'react';
 import { PlanetsContext } from '../context/planetsContext';
+import FormControlStyle from '../style/FormControlStyle';
 
 function OrderFilter() {
   const { context } = useContext(PlanetsContext);
@@ -37,50 +34,57 @@ function OrderFilter() {
 
   return (
 
-    <FormControl variant="standard" maxWidth="sm">
+    <FormControlStyle variant="standard" maxWidth="sm">
 
-      <FormLabel id="column-sort"> Ordenar por</FormLabel>
-      <Select
-        label="Ordenar"
-        data-testid="column-sort"
-        labelId="column-sort"
-        onChange={ (e) => setColumnOrder(e.target.value) }
-        name="column"
-        // value={ columnOrder }
-      >
-        {columnList.map((item, i) => (
-          <MenuItem
-            key={ i }
-            value={ item }
-          >
-            {item}
-          </MenuItem>))}
-      </Select>
+      <label htmlFor="column-sort">
+        {' '}
+        Ordenar
+        <select
+          label="Ordenar"
+          data-testid="column-sort"
+          id="column-sort"
+          onChange={ (e) => setColumnOrder(e.target.value) }
+          name="column"
+        >
+          {columnList.map((item, i) => (
+            <option
+              key={ i }
+              value={ item }
+            >
+              {item}
+            </option>))}
+        </select>
+      </label>
+      <div>
+        <label htmlFor="ASC">
+          ASC
 
-      <RadioGroup>
-        <FormControlLabel
-          control={ <Radio /> }
-          label="Ascendente"
-          type="radio"
-          value="ASC"
-          data-testid="column-sort-input-asc"
-          labelId="ASC"
-          name="order"
-          onClick={ (e) => setAscDesc(e.target.value) }
-        />
-        <FormControlLabel
-          control={ <Radio /> }
-          label="Descendente"
-          type="radio"
-          value="DESC"
-          data-testid="column-sort-input-desc"
-          labelId="DESC"
-          name="order"
-          onClick={ (e) => setAscDesc(e.target.value) }
-        />
-      </RadioGroup>
+          <input
+            label="Ascendente"
+            type="radio"
+            value="ASC"
+            data-testid="column-sort-input-asc"
+            id="ASC"
+            name="order"
+            onClick={ (e) => setAscDesc(e.target.value) }
+          />
+        </label>
+        <label htmlFor="DESC">
+          DESC
 
-      <Button
+          <input
+            label="Descendente"
+            type="radio"
+            value="DESC"
+            data-testid="column-sort-input-desc"
+            id="DESC"
+            name="order"
+            onClick={ (e) => setAscDesc(e.target.value) }
+          />
+        </label>
+      </div>
+
+      <button
         maxWidth="sm"
         variant="contained"
         type="button"
@@ -88,8 +92,8 @@ function OrderFilter() {
         onClick={ () => orderFunction() }
       >
         Ordenar
-      </Button>
-    </FormControl>
+      </button>
+    </FormControlStyle>
   );
 }
 
